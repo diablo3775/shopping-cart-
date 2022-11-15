@@ -6,7 +6,8 @@
   --bg-color: #fff;
   --link-color: #000;
   --link-size: 1.1rem;
-  --right-side-bg-color: 81, 187, 254;
+  /* --right-side-bg-color: 81, 187, 254; */
+  --right-side-bg-color: 184, 209, 221;
 }
 
 /* General CSS */
@@ -308,12 +309,12 @@ main .model {
   cursor: pointer;
 }
 .products .item .item-container .add-to-cart img {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
 }
 .products .item .item-container .add-to-wishlist img {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
 
   padding: 5px;
 }
