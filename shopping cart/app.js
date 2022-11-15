@@ -3,6 +3,7 @@ const productsEl = document.querySelector(".products");
 const cartItemsEl = document.querySelector(".cart-items");
 const subtotalEl = document.querySelector(".subtotal");
 const totalItemsInCartEl = document.querySelector(".total-items-in-cart");
+const removeAllEl = document.querySelector(".removeAll")
 
 // RENDER PRODUCTS
 function renderProdcuts() {
@@ -15,7 +16,7 @@ function renderProdcuts() {
                     </div>
                     <div class="desc">
                         <h2>${product.name}</h2>
-                        <h2><small>$</small>${product.price}</h2>
+                        <h2><small>₹</small>${product.price}</h2>
                         <p>
                             ${product.description}
                         </p>
@@ -73,8 +74,9 @@ function renderSubtotal() {
     totalItems += item.numberOfUnits;
   });
 
-  subtotalEl.innerHTML = `Subtotal (${totalItems} items): $${totalPrice.toFixed(2)}`;
+  subtotalEl.innerHTML = `Subtotal (${totalItems} items): ₹${totalPrice.toFixed(2)}`;
   totalItemsInCartEl.innerHTML = totalItems;
+  removeAllEl.innnerHTML = `Remove All`
 }
 
 // render cart items
@@ -82,13 +84,13 @@ function renderCartItems() {
   cartItemsEl.innerHTML = ""; // clear cart element
   cart.forEach((item) => {
     cartItemsEl.innerHTML += `
-        <div class="cart-item">
-            <div class="item-info" onclick="removeItemFromCart(${item.id})">
-                <img src="${item.imgSrc}" alt="${item.name}">
-                <h4>${item.name}</h4>
-            </div>
+    <div class="cart-item">
+    <div class="item-info" onclick="removeItemFromCart(${item.id})">
+    <img src="${item.imgSrc}" alt="${item.name}">
+    <h4>${item.name}</h4>
+    </div>
             <div class="unit-price">
-                <small>$</small>${item.price}
+                <small>₹</small>${item.price}
             </div>
             <div class='coupon-container'>
             </div>
@@ -113,22 +115,22 @@ function removeItemFromCart(id) {
   updateCart();
 }
 
-// coupon
-function coupon(id) {
-  if("coupon" === "zerab") {
-  let totalPrice = 0,
-  totalItems = 0;
+console.log(products)
+// remove all items from cart 
+function removeAllItemsFromCart() {
+  // cart = cart.filter((item) => item.id !== id)
+  // cart = {}
+  
+  
+  // cart = cart.filter((item) => item.id !== ids)
+  cart = []
+  localStorage.setItem("CART", JSON.stringify(cart));
+  renderCartItems()
 
-cart.forEach((item) => {
-  totalPrice += item.price - 10;
-});
+  updateCart()
+  // renderCartItems()
+}
 
-subtotalEl.innerHTML = `Subtotal (${totalItems} items): $${totalPrice.toFixed(2)}`;
-totalItemsInCartEl.innerHTML = totalItems;
-}
-renderCartItems();
-renderSubtotal();
-}
 
 // change number of units for an item
 function changeNumberOfUnits(action, id) {
